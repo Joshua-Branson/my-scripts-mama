@@ -1,0 +1,52 @@
+-- Services
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+repeat task.wait() until player.Character
+local character = player.Character
+local root = character:WaitForChild("HumanoidRootPart")
+
+-- Remove old GUI if it exists
+if game.CoreGui:FindFirstChild("CopyCFrameGui") then
+	game.CoreGui.CopyCFrameGui:Destroy()
+end
+
+-- Create GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "CopyCFrameGui"
+gui.ResetOnSpawn = false
+gui.Parent = game.CoreGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 160, 0, 60)
+frame.Position = UDim2.new(0.5, -80, 0.5, -30)
+frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+frame.Active = true
+frame.Draggable = true -- works in executors
+
+-- Button
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(1, -10, 1, -10)
+button.Position = UDim2.new(0, 5, 0, 5)
+button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+button.BorderSizePixel = 0
+button.Text = "Copy"
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.TextScaled = true
+button.Font = Enum.Font.SourceSansBold
+button.Parent = frame
+
+-- Copy CFrame
+button.MouseButton1Click:Connect(function()
+	local cfString = tostring(root.CFrame)
+	
+	if setclipboard then
+		setclipboard(cfString)
+	else
+		warn("Clipboard function not supported by executor")
+	end
+end)
