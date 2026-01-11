@@ -1,0 +1,6 @@
+local args = {
+    local args = {
+	CFrame.new(-775.9619750976562, 28.992956161499023, -1233.484130859375, -1, 0, 0, 0, 1, 0, 0, 0, -1),
+	
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Demons"):WaitForChild("Flaming"):FireServer(unpack(args))
