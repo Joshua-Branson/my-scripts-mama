@@ -18,29 +18,37 @@ local StaffRoles = {
 	["Creator"] = true
 }
 
-local function isStaff(player)
+local function getStaffRole(player)
 	local success, role = pcall(function()
 		return player:GetRoleInGroup(GROUP_ID)
 	end)
 
-	if success then
-		return StaffRoles[role] == true
+	if success and StaffRoles[role] then
+		return role
 	end
 
-	return false
+	return nil
 end
 
 -- Check players already in the server
 for _, player in ipairs(Players:GetPlayers()) do
-	if player ~= LocalPlayer and isStaff(player) then
-		LocalPlayer:Kick("A MOD has joined")
-		return
+	if player ~= LocalPlayer then
+		local role = getStaffRole(player)
+		if role then
+			print("Staff detected:", player.Name, "| Role:", role)
+			LocalPlayer:Kick("A MOD has joined: " .. player.Name)
+			return
+		end
 	end
 end
 
 -- Detect players joining later
 Players.PlayerAdded:Connect(function(player)
-	if isStaff(player) then
-		LocalPlayer:Kick("A MOD has joined")
+	local role = getStaffRole(player)
+	if role then
+		print("Staff detected:", player.Name, "| Role:", role)
+		LocalPlayer:Kick("A MOD has joined: " .. player.Name)
+	end
+end)
 task.wait(0.001)
 end
