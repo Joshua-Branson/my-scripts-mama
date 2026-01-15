@@ -1,0 +1,11 @@
+local placeId = game.PlaceId
+
+if placeId == 12691971351 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Joshua-Branson/my-scripts-mama/refs/heads/main/charmed%20reborn%20staff%20checker"))()
+
+elseif placeId == 17767887982 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Joshua-Branson/my-scripts-mama/refs/heads/main/bloodlines%20checker"))()
+
+else
+	print("No checker for this game")
+end
