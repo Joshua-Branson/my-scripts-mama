@@ -1,0 +1,47 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local GROUP_ID = 15227438
+
+local VALID_ROLES = {
+    ["Developer"] = true,
+    ["Overseer"] = true,
+    ["Head Overseer"] = true,
+    ["Junior Moderator"] = true,
+    ["Moderator"] = true,
+    ["Senior Moderator"] = true,
+    ["Head Moderator"] = true,
+    ["Admin"] = true,
+    ["Manager"] = true,
+    ["Owner"] = true,
+    ["Creator"] = true,
+    ["Holder"] = true
+}
+
+local CHECK_INTERVAL = 1
+
+local function hasDangerRole(player)
+    local role = player:GetRoleInGroup(GROUP_ID)
+    return VALID_ROLES[role] == true
+end
+
+local function scan()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and hasDangerRole(player) then
+            LocalPlayer:Kick("a moderator arrived")
+            return
+        end
+    end
+end
+
+Players.PlayerAdded:Connect(function(player)
+    task.wait(1)
+    scan()
+end)
+
+task.spawn(function()
+    while true do
+        scan()
+        task.wait(CHECK_INTERVAL)
+    end
+end)
