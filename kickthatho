@@ -1,0 +1,9 @@
+local CurrentHWID = (gethwid and gethwid()) or game:GetService("RbxAnalyticsService"):GetClientId()
+local bannedList = loadstring(game:HttpGet("https://raw.githubusercontent.com/Joshua-Branson/my-scripts-mama/refs/heads/main/banned%20people%20because%20idgaf"))()
+if bannedList[CurrentHWID] then
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+
+localPlayer:Kick("Get out my script mwah 💋")
+return
+end
