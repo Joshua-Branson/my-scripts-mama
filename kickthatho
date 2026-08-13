@@ -6,4 +6,6 @@ local localPlayer = Players.LocalPlayer
 
 localPlayer:Kick("Get out my script mwah 💋")
 return
+else
+print("Not on ban list for Jae's Scripts")
 end
