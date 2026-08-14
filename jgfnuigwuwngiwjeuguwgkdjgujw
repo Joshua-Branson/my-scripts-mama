@@ -16,4 +16,5 @@ if allowed[CurrentHWID] then
 
 else 
     localPlayer:Kick("Not authorized for " .. GameName .. " script.")
+    return
 end
