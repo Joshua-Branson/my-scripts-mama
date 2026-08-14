@@ -13,7 +13,7 @@ local GameName = success and info.Name or "this"
 local allowed = loadstring(game:HttpGet("https://raw.githubusercontent.com/Joshua-Branson/my-scripts-mama/refs/heads/main/charmedallowed"))()
 
 if allowed[CurrentHWID] then
-
+    print("Access Granted")
 else 
     localPlayer:Kick("Not authorized for " .. GameName .. " script.")
     return
