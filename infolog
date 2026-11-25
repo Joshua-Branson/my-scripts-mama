@@ -1,14 +1,7 @@
 return function(title, text, target)
 	local message = text
 	local titleFr = title
-	local section = nil
-
-	if game.PlaceId == 12691971351 then
-		message = "N/A"
-		titleFr = "Information"
-		section = target
-	end
-
+	local section = target
 	if section then
 		section:CreateParagraph({
 			Title = titleFr,
