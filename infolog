@@ -1,9 +1,9 @@
 local message
 local title
-local areafor
+local areafor = nil
 if game.PlaceId == 12691971351 then
 	message = "N/A"
     title = "Information"
-    areafor = "Mai"
+    areafor = Mai
 end
 local Paragraph = areafor:CreateParagraph({Title = title, Content = message})
