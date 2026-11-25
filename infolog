@@ -1,9 +1,18 @@
-local message
-local title
-local areafor = nil
-if game.PlaceId == 12691971351 then
-	message = "N/A"
-    title = "Information"
-    areafor = Mai
+return function(title, text, target)
+	local message = text
+	local titleFr = title
+	local section = nil
+
+	if game.PlaceId == 12691971351 then
+		message = "N/A"
+		titleFr = "Information"
+		section = target
+	end
+
+	if section then
+		section:CreateParagraph({
+			Title = titleFr,
+			Content = message,
+		})
+	end
 end
-local Paragraph = areafor:CreateParagraph({Title = title, Content = message})
